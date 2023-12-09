@@ -13,7 +13,6 @@ import {MatButtonModule} from '@angular/material/button';
 import {HttpClientModule} from '@angular/common/http';
 
 //Services (providers)
-import { AsyncAwaitService } from './async-await-serice/async-await.service';
 import { ClickServiceService } from './click-service/click-service.service';
 @NgModule({
   declarations: [
@@ -30,7 +29,6 @@ import { ClickServiceService } from './click-service/click-service.service';
   ],
   providers: [
     ClickServiceService,
-    AsyncAwaitService,
   ],
   bootstrap: [AppComponent]
 })

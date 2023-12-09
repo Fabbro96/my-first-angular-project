@@ -1,0 +1,9 @@
+.test {
+  position: absolute;
+  z-index: 10000;
+  background-color: #fff;
+  opacity: 0;
+  -webkit-transition: all .3s ease-out;
+  -moz-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}

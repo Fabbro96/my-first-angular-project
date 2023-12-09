@@ -3,3 +3,38 @@
   align-items: center;
   justify-content: space-around;
 }
+
+
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.blurry-background {
+  position: absolute;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  filter: blur(3px); /* Modifica il valore di blur a tuo piacimento */
+  -webkit-backdrop-filter: blur(3px); /* Per i browser basati su WebKit (Chrome, Safari) */
+  backdrop-filter: blur(3px);
+  /* Blocca il click ai bottoni */
+  pointer-events: none;
+  /* Permette di bloccare la selezione del testo */
+  user-select: none;
+}
+
+.bottoneProva {
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  background-color: aqua;
+  pointer-events: all;
+}
+
+
+
+
+

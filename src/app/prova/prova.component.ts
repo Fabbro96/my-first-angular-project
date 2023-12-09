@@ -1,18 +1,11 @@
-import { FirebaseService } from '../firebase.service';
-import { AsyncAwaitService } from '../async-await-serice/async-await.service';
-
 import { ClickServiceService } from './../click-service/click-service.service';
 import { Component, OnInit } from '@angular/core';
-import { async } from '@angular/core/testing';
 @Component({
   selector: 'app-prova',
   templateUrl: './prova.component.html',
   styleUrl: './prova.component.css'
 })
 export class ProvaComponent implements OnInit{
-
-  asyncawait: AsyncAwaitService;
-
   /** Proprietá del bottone */
   isDisabled = [false, false];
 
@@ -21,10 +14,6 @@ export class ProvaComponent implements OnInit{
   /** Array dei bottoni */
   protected numeroBottone = [{id: 1, nome: 'Bottone 1'}, {id: 2, nome: 'Bottone 2'}];
 
-
-  constructor(asyncawait: AsyncAwaitService) {
-    this.asyncawait = asyncawait;
-  }
 
 
   ngOnInit(): void {
@@ -52,6 +41,29 @@ export class ProvaComponent implements OnInit{
     }
   }
 
+  removeBlur():void {
+    const blurryBackground = document.getElementById("blurred") as HTMLElement;
+    const rimuoviBlur = document.getElementById("blurToEliminate") as HTMLElement;
+    // Rimuovi le proprietà di sfocatura e filtri
+    blurryBackground.style.filter = "none";
+    blurryBackground.style.backdropFilter = "none";
+
+    // Rendi il blurry-background trasparente ai clic
+    (document.querySelector(".blurry-background") as HTMLElement).style.pointerEvents = "all";
+
+    rimuoviBlur.style.visibility = "hidden";
+
+  }
+
+  next():void {
+    console.log("next")
+    const bottone1 = document.getElementById("bottone1") as HTMLElement;
+    
+  }
+
+
+
+
   /**
   * Costruttore per firebase
   */
@@ -62,13 +74,4 @@ export class ProvaComponent implements OnInit{
   } */
 
 
-  async onAlternativeClick() {
-    let async = new AsyncAwaitService();
-    // Usato con il promises
-    // asyncAwait.displayData();
-    // Usato con async/await
-
-    /** In questo caso stamperá nei log i dati usando l'await */
-    console.log(this.asyncawait.getData());
-  }
 }

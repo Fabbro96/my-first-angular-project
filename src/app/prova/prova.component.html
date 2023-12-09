@@ -1,9 +1,20 @@
 <!-- <p>prova works! {{ title }}</p> -->
-<div>
-  <button mat-raised-button color="warn" [disabled]="isDisabled[0]" (click)="onClick(numeroBottone[0].id)">{{ numeroBottone[0].nome }}</button>
-  <button mat-raised-button color="warn" [disabled]="isDisabled[1]" (click)="onClick(numeroBottone[1].id)">{{ numeroBottone[1].nome }}</button>
-  <label> {{ testoLabel }}</label>
+<div class="blurry-background" id="blurred">
+    <div class="testbuttons">
+      <button mat-raised-button color="warn" [disabled]="isDisabled[0]" (click)="onClick(numeroBottone[0].id)" id="bottone1">{{ numeroBottone[0].nome }}</button>
+      <button mat-raised-button color="warn" [disabled]="isDisabled[1]" (click)="onClick(numeroBottone[1].id)">{{ numeroBottone[1].nome }}</button>
+      <label> {{ testoLabel }}</label>
+    </div>
+    <div class="testtext">
+      <button mat-raised-button color="works">Esegui la funzione await</button>
+    </div>
 </div>
-<div>
-  <button mat-raised-button color="works" (click)="onAlternativeClick()">Esegui la funzione await</button>
+<div class="blurry-background" id="blurred2">
+  <button mat-raised-button color="works">Componente blurrato 1</button>
+  <button mat-raised-button color="works">Componente blurrato 2</button>
+</div>
+<div class="bottoneProva" id="blurToEliminate">
+  <p> testo del tutorial</p>
+  <button mat-raised-button color="works" (click)="removeBlur()">Rimuovi il blur</button>
+  <button mat-raised-button color="works" (click)="next()">next</button>
 </div>
