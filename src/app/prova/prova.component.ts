@@ -1,5 +1,5 @@
 import { ClickServiceService } from './../click-service/click-service.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 @Component({
   selector: 'app-prova',
   templateUrl: './prova.component.html',
@@ -14,7 +14,11 @@ export class ProvaComponent implements OnInit{
   /** Array dei bottoni */
   protected numeroBottone = [{id: 1, nome: 'Bottone 1'}, {id: 2, nome: 'Bottone 2'}];
 
-
+  posizioneX = 0;
+  posizioneY = 0;
+  trascinando = false;
+  offsetX = 0;
+  offsetY = 0;
 
   ngOnInit(): void {
     /** Cambia lo stato del bottone cliccato */
@@ -23,6 +27,7 @@ export class ProvaComponent implements OnInit{
     }, 2000); */
 
   }
+  constructor(private elRef: ElementRef) {}
 
   onClick(e:any) {
     const clickService = new ClickServiceService();
@@ -52,14 +57,45 @@ export class ProvaComponent implements OnInit{
     (document.querySelector(".blurry-background") as HTMLElement).style.pointerEvents = "all";
 
     rimuoviBlur.style.visibility = "hidden";
-
   }
 
   next():void {
-    console.log("next")
-    const bottone1 = document.getElementById("bottone1") as HTMLElement;
-    
+    // console.log("next")
+    // const clickService = new ClickServiceService();
+    // clickService.getDimensioni(this.er.nativeElement.querySelector('#bottone1'));
+    // Ottieni il riferimento all'elemento del bottone
+    const bottoneElement = this.elRef.nativeElement.querySelector('#bottone1');
+
+    // Ottieni le dimensioni e la posizione del bottone
+    const boundingBox = bottoneElement.getBoundingClientRect();
+
+    // Ora puoi accedere alle proprietà come ad esempio boundingBox.top, boundingBox.left, ecc.
+    console.log('Posizione del bottone:', boundingBox);
+    this.posizioneX = boundingBox.right;
+    this.posizioneY = boundingBox.top;
+    this.iniziaTrascinamento(new MouseEvent('click'));
+    this.trascina(new MouseEvent('click'));
+    this.terminaTrascinamento();
+
   }
+
+  iniziaTrascinamento(event: MouseEvent): void {
+    this.trascinando = true;
+    this.offsetX = event.clientX - this.posizioneX;
+    this.offsetY = event.clientY - this.posizioneY;
+  }
+
+  terminaTrascinamento(): void {
+    this.trascinando = false;
+  }
+
+  trascina(event: MouseEvent): void {
+    if (this.trascinando) {
+      this.posizioneX = event.clientX - this.offsetX + 10; // Aggiungi 10 pixel
+      this.posizioneY = event.clientY - this.offsetY;
+    }
+  }
+
 
 
 
