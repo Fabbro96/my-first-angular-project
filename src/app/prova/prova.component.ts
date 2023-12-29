@@ -1,5 +1,7 @@
 import { ClickServiceService } from './../click-service/click-service.service';
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PopUpComponent } from '../pop-up/pop-up.component';
 @Component({
   selector: 'app-prova',
   templateUrl: './prova.component.html',
@@ -19,6 +21,7 @@ export class ProvaComponent implements OnInit{
   trascinando = false;
   offsetX = 0;
   offsetY = 0;
+selectedIndex: any;
 
   ngOnInit(): void {
     /** Cambia lo stato del bottone cliccato */
@@ -27,7 +30,20 @@ export class ProvaComponent implements OnInit{
     }, 2000); */
 
   }
-  constructor(private elRef: ElementRef) {}
+  constructor(private elRef: ElementRef, private dialog: MatDialog) {}
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(PopUpComponent, {
+      width: '300px',
+      data: { title: 'Che problema hai riscontrato?', placeholder: 'Descrivi il problema qui...' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== null && result !== undefined) {
+        console.log('Testo inserito:', result);
+      }
+    });
+  }
 
   onClick(e:any) {
     const clickService = new ClickServiceService();

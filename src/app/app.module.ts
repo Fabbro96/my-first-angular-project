@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProvaComponent } from './prova/prova.component';
@@ -14,10 +15,14 @@ import {HttpClientModule} from '@angular/common/http';
 
 //Services (providers)
 import { ClickServiceService } from './click-service/click-service.service';
+import { PopUpComponent } from './pop-up/pop-up.component';
+
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    ProvaComponent
+    ProvaComponent,
+    PopUpComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +30,8 @@ import { ClickServiceService } from './click-service/click-service.service';
     BrowserAnimationsModule,
     MatButtonModule,
     HttpClientModule,
-
+    MatDialogModule,
+    FormsModule,
   ],
   providers: [
     ClickServiceService,

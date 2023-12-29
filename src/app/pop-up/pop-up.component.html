@@ -1,0 +1,4 @@
+<!-- prompt-dialog.component.html -->
+<h2>{{ data.title }}</h2>
+<textarea matInput  [(ngModel)]="data.result" placeholder="{{ data.placeholder }}"></textarea>
+<button mat-raised-button color="primary" (click)="chiudiPrompt()">Invia</button>
